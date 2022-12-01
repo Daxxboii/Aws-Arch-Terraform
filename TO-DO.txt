@@ -1,17 +1,17 @@
 River’s Deployment TODO
 
-    ⁃    CI/CD (and deploying new microservices) 
-    ⁃    Global event bridge
+    ⁃    CI/CD (and deploying new microservices) (Half Done)
+    ⁃    Global event bridge (Done , added to main.tf)
     ⁃    Global S3
     ⁃    Global DB
-    ⁃    Active/Active SNS deployment (w logic to avoid double processing)
-    ⁃    Active/Active SNS
-    ⁃    api gateway endpoint for each microservice
-    ⁃    Route53 DNS resolving for lowest latency
+    ⁃    Active/Active SNS deployment (w logic to avoid double processing) (still deciding on the logic)
+    ⁃    Active/Active SNS (Global SNS)
+    ⁃    api gateway endpoint for each microservice (Almost Finished)
+    ⁃    Route53 DNS resolving for lowest latency 
     ⁃    Cloudfront deployed on a global s3 bucket with cloudfront function deployed to redirect user based on latency
 
 
 Proof:
     ⁃    deploy two microservices (1 finished)
-    ⁃    use eventbridge on one service to asynchronously invoke the other
+    ⁃    use eventbridge on one service to asynchronously invoke the other (Next on the list)
     ⁃    use multi region sqs and sns 
