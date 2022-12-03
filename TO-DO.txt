@@ -1,9 +1,9 @@
 River’s Deployment TODO
 
-    ⁃    CI/CD (and deploying new microservices) (Half Done)
+    ⁃    CI/CD (and deploying new microservices) (Half Done,trying new approach w spinnaker )
     ⁃    Global event bridge (Done , added to main.tf)
-    ⁃    Global S3
-    ⁃    Global DB
+    ⁃    Global S3(Done)
+    ⁃    Global DB(Done)
     ⁃    Active/Active SNS deployment (w logic to avoid double processing) (still deciding on the logic)
     ⁃    Active/Active SNS (Global SNS)
     ⁃    api gateway endpoint for each microservice (Almost Finished)

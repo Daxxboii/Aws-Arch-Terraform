@@ -204,6 +204,20 @@ resource "aws_ecs_service" "hello_world" {
   depends_on = [aws_lb_listener.hello_world]
 }
 
+resource "aws_s3_bucket" "b" {
+  bucket = "my-tf-test-bucket"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
+
+resource "aws_s3_bucket_acl" "example" {
+  bucket = aws_s3_bucket.b.id
+  acl    = "private"
+}
+
 //CI/CD Blue Green Deployment
 /*
 resource "aws_codedeploy_app" "example" {
