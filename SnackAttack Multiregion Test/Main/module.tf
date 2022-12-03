@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "aws" {
-  region                  = var.region
+  region                  = "us-east-1"
   shared_credentials_file = "~/.aws/credentials"
   profile                 = "default"
 }
@@ -118,6 +118,19 @@ resource "aws_lb_listener" "hello_world" {
   }
 }
 
+resource "aws_ecr_repository" "my_first_ecr_repo" {
+  name = "my-first-ecr-repo" # Naming my repository
+}
+
+resource "aws_iam_user" "publisher" {
+  name = "ecr-publisher"
+  path = "/serviceaccounts/"
+}
+
+resource "aws_iam_access_key" "publisher" {
+  user = aws_iam_user.publisher.name
+}
+
 resource "aws_ecs_task_definition" "hello_world" {
   family                   = "hello-world-app"
   network_mode             = "awsvpc"
@@ -128,7 +141,7 @@ resource "aws_ecs_task_definition" "hello_world" {
   container_definitions = <<DEFINITION
 [
   {
-    "image": "registry.gitlab.com/architect-io/artifacts/nodejs-hello-world:latest",
+    "image": "public.ecr.aws/y6s6s5a9/cicdrepo:latest",
     "cpu": 1024,
     "memory": 2048,
     "name": "hello-world-app",
@@ -173,6 +186,9 @@ resource "aws_ecs_service" "hello_world" {
   task_definition = aws_ecs_task_definition.hello_world.arn
   desired_count   = var.app_count
   launch_type     = "FARGATE"
+    deployment_controller {
+      type = "CODE_DEPLOY"
+  }
 
   network_configuration {
     security_groups = [aws_security_group.hello_world_task.id]
@@ -189,7 +205,7 @@ resource "aws_ecs_service" "hello_world" {
 }
 
 //CI/CD Blue Green Deployment
-
+/*
 resource "aws_codedeploy_app" "example" {
   compute_platform = "ECS"
   name             = "example"
@@ -242,4 +258,4 @@ resource "aws_codedeploy_deployment_group" "example" {
       }
     }
   }
-}
+}*/
