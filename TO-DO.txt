@@ -6,7 +6,6 @@ River’s Deployment TODO
     ⁃    Global DB(Done)
     ⁃    Active/Active SNS deployment (w logic to avoid double processing) (still deciding on the logic)
     ⁃    Active/Active SNS (Global SNS)
-    ⁃    api gateway endpoint for each microservice (Almost Finished)
     ⁃    Route53 DNS resolving for lowest latency 
     ⁃    Cloudfront deployed on a global s3 bucket with cloudfront function deployed to redirect user based on latency
 
